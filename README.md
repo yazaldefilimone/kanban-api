@@ -1,8 +1,8 @@
  <p align="center" >
-<img src="https://i2.wp.com/www.ishanka.me/wp-content/uploads/2019/12/nodetsejs.jpg?w=2000&ssl=1" />
+<img src=".assets/logo-dark.svg" />
 <P/>
  <p align="center">
-  <img src="https://img.shields.io/static/v1?label=Clean-Arch TDD api&message=Welcome&color=FFFFFF&labelColor=110C2F" alt="Unsplash welcome!" />
+  <img src="https://img.shields.io/static/v1?label=Kanban Api&message=Welcome&color=FFFFFF&labelColor=110C2F" alt="Unsplash welcome!" />
   <img alt="License" src="https://img.shields.io/static/v1?label=version&message=1.0&color=FFFFFF&labelColor=110C2F">
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=FFFFFF&labelColor=110C2F">
   <img alt="Stars" src="https://img.shields.io/github/stars/yazaldefilimonepinto/kanban-api?color=FFFFFF&labelColor=110C2F">
