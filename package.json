@@ -1,8 +1,9 @@
 {
-  "name": "clean-arch-api-starter",
+  "name": "kanban-api",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/yazaldefilimonepinto/clean-arch-api-starter",
+  "description": "Kanban task management api rest building with express, clean arch, tdd, prisma, vitest, mongodb.",
+  "repository": "https://github.com/yazaldefilimonepinto/kanban-api",
   "author": {
     "name": "Yazalde Filimone",
     "email": "yazaldefilimon@gmail.com",
@@ -10,6 +11,8 @@
   },
   "license": "MIT",
   "keywords": [
+    "task management",
+    "kanban-api",
     "clean architecture",
     "clean code",
     "tdd",
@@ -18,7 +21,6 @@
     "design patterns",
     "node",
     "typescript",
-    "jest",
     "prisma"
   ],
   "scripts": {
