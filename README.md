@@ -2,11 +2,11 @@
 <img src=".assets/logo-dark.svg" />
 <P/>
  <p align="center">
-  <img src="https://img.shields.io/static/v1?label=Kanban Api&message=Welcome&color=FFFFFF&labelColor=110C2F" alt="Unsplash welcome!" />
-  <img alt="License" src="https://img.shields.io/static/v1?label=version&message=1.0&color=FFFFFF&labelColor=110C2F">
-  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=FFFFFF&labelColor=110C2F">
-  <img alt="Stars" src="https://img.shields.io/github/stars/yazaldefilimonepinto/kanban-api?color=FFFFFF&labelColor=110C2F">
-  <img alt="Languages" src="https://img.shields.io/github/languages/count/yazaldefilimonepinto/kanban-api?color=FFFFFF&labelColor=110C2F">
+  <img src="https://img.shields.io/static/v1?label=Kanban Api&message=Welcome&color=FFFFFF&labelColor=635FC7" alt="Unsplash welcome!" />
+  <img alt="License" src="https://img.shields.io/static/v1?label=version&message=1.0&color=FFFFFF&labelColor=635FC7">
+  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=FFFFFF&labelColor=635FC7">
+  <img alt="Stars" src="https://img.shields.io/github/stars/yazaldefilimonepinto/kanban-api?color=FFFFFF&labelColor=635FC7">
+  <img alt="Languages" src="https://img.shields.io/github/languages/count/yazaldefilimonepinto/kanban-api?color=FFFFFF&labelColor=635FC7">
 </p>
 <p align="center" >
 Kanban task management api rest building with express, clean arch, tdd, prisma, vitest, mongodb.
