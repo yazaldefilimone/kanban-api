@@ -58,6 +58,7 @@
     "vitest": "^0.24.3"
   },
   "dependencies": {
+    "@prisma/client": "4.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
