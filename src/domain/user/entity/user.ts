@@ -48,6 +48,7 @@ export class User {
       email: userValidate.email.value,
       name: userValidate.name.value,
       password: userValidate.password.value,
+      bio: user.bio,
     };
 
     const metadata = new User(userValid);

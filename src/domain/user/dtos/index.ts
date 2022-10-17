@@ -1,18 +1,21 @@
 export type userType = {
-  name: string
-  email: string
-  password: string
-}
+  name: string;
+  email: string;
+  password: string;
+  bio?: string;
+};
 
 export type userLoginType = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+  bio?: string;
+};
 
 export type userStoreType = {
-  id: string
-  email: string
-  password: string
-  createdAt: string
-  updateAt: string
-}
+  id: string;
+  email: string;
+  bio?: string;
+  password: string;
+  createdAt: string;
+  updateAt: string;
+};
