@@ -6,3 +6,61 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id              String   @id
+  name            String   @db.VarChar(255)
+  email           String   @unique @db.VarChar(255)
+  password        String   @db.VarChar(255)
+  github_id       String   @unique
+  github_username String   @unique @db.VarChar(255)
+  github_profile  String
+  bio             String   @db.Text
+  avatar_url      String?
+  createdAt       DateTime
+  updateAt        DateTime @default(now())
+  Board           Board[]
+  Task            Task[]
+
+  @@map("users")
+}
+
+model Task {
+  id        String   @id
+  name      String   @db.VarChar(255)
+  createdAt DateTime
+  updateAt  DateTime @default(now())
+  status    Status   @relation(fields: [statusId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  board     Board    @relation(fields: [boardId], references: [id])
+  boardId   String
+  statusId  String
+
+  @@map("tasks")
+}
+
+model Board {
+  id        String   @id
+  name      String   @db.VarChar(255)
+  users     User     @relation(fields: [userId], references: [id])
+  userId    String
+  Task      Task[]
+  createdAt DateTime
+  updateAt  DateTime @default(now())
+  Status    Status[]
+
+  @@map("boards")
+}
+
+model Status {
+  id        String   @id
+  name      String   @db.VarChar(255)
+  board     Board    @relation(fields: [boardId], references: [id])
+  Task      Task[]
+  boardId   String
+  createdAt DateTime
+  updateAt  DateTime @default(now())
+
+  @@map("status")
+}
