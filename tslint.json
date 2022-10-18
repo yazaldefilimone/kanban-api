@@ -2,6 +2,7 @@
   "extends": ["tslint:recommended", "tslint-config-prettier"],
   "rules": {
     "no-namespace": false,
-    "only-arrow-functions": false
+    "only-arrow-functions": false,
+    "max-classes-per-file": false
   }
 }
