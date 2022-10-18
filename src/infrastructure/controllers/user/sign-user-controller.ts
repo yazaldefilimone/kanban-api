@@ -1,4 +1,4 @@
-import { AlreadyExistsError, InternalServerError, InvalidParamError } from '~/domain/errors';
+import { InternalServerError } from '~/domain/errors';
 import { ISignUserUseCase } from '~/domain/user/use-cases';
 import { IController } from '~/infrastructure/controllers/protocols';
 
