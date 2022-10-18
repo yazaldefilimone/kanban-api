@@ -1,6 +1,8 @@
 import { SignUserUseCase } from '~/application/use-cases/user';
 import { AlreadyExistsError } from '~/domain/errors';
 import { userType } from '~/domain/user/dtos';
+import { Cryptography } from '~/infrastructure/services/cryptography';
+import { TokenGenerator } from '~/infrastructure/services/token';
 import { InMemoryUserRepository } from '~/tests/infrastructure/repositories/user';
 
 const makeSut = () => {
@@ -11,7 +13,9 @@ const makeSut = () => {
   };
 
   const userRepository = new InMemoryUserRepository();
-  const sut = new SignUserUseCase(userRepository);
+  const tokenGenerator = new TokenGenerator();
+  const cryptography = new Cryptography();
+  const sut = new SignUserUseCase(userRepository, tokenGenerator, cryptography);
   return {
     sut,
     userRepository,
