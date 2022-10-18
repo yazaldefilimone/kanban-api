@@ -12,7 +12,7 @@ model User {
   name       String   @db.VarChar(255)
   email      String   @unique @db.VarChar(255)
   password   String   @db.VarChar(255)
-  bio        String   @db.Text
+  bio        String?  @db.Text
   avatar_url String?
   createdAt  DateTime
   updateAt   DateTime @default(now())
