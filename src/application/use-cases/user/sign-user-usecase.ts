@@ -31,7 +31,7 @@ export class SignUserUseCase implements ISignUserUseCase {
     user.password = hash;
 
     const { id } = await this.userRepository.sign(user);
-    const token = await this.tokenGenerator.generate({ key: id });
+    const token = await this.tokenGenerator.generate({ key: { id } });
 
     return right({
       id,
