@@ -1,1 +1,1 @@
-export * from './make-sign-user-factory';
+export * from './sign-user-factory';

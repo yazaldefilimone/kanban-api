@@ -5,7 +5,7 @@ import { UserRepository } from '~/infrastructure/repositories/user';
 import { Cryptography } from '~/infrastructure/services/cryptography';
 import { TokenGenerator } from '~/infrastructure/services/token';
 
-export const makeSignUserFactory = async function (request: Request, response: Response) {
+export const signUserFactory = async function (request: Request, response: Response) {
   const userRepository = new UserRepository();
   const tokenGenerator = new TokenGenerator();
   const cryptography = new Cryptography();
