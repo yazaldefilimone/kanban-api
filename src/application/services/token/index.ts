@@ -4,7 +4,7 @@ export interface ITokenGenerator {
 
 export namespace ITokenGenerator {
   export type Input = {
-    key: string;
+    key: { id: string };
     expirationInMs?: number | string;
   };
   export type Output = string;
@@ -16,5 +16,8 @@ export interface ITokenValidator {
 
 export namespace ITokenValidator {
   export type Input = { token: string };
-  export type Output = string;
+  export type Output<T = any> = {
+    status: boolean;
+    data: T;
+  };
 }

@@ -1,4 +1,4 @@
 export interface ICryptography {
-  decrypt: (cipher: string) => Promise<string>;
-  encrypt: (plain: string) => Promise<string>;
+  encrypt: (cipher: string) => Promise<string>;
+  decrypt: (plain: string, hash: string) => Promise<boolean>;
 }
