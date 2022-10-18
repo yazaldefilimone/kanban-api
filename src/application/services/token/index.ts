@@ -5,7 +5,7 @@ export interface ITokenGenerator {
 export namespace ITokenGenerator {
   export type Input = {
     key: string;
-    expirationInMs: number;
+    expirationInMs?: number | string;
   };
   export type Output = string;
 }
