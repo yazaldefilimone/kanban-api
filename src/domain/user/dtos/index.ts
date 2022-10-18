@@ -15,7 +15,8 @@ export type userStoreType = {
   id: string;
   email: string;
   bio?: string;
+  name: string;
   password: string;
-  createdAt: string;
-  updateAt: string;
+  createdAt: string | Date;
+  updateAt: string | Date;
 };
