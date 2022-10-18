@@ -8,19 +8,16 @@ datasource db {
 }
 
 model User {
-  id              String   @id
-  name            String   @db.VarChar(255)
-  email           String   @unique @db.VarChar(255)
-  password        String   @db.VarChar(255)
-  github_id       String   @unique
-  github_username String   @unique @db.VarChar(255)
-  github_profile  String
-  bio             String   @db.Text
-  avatar_url      String?
-  createdAt       DateTime
-  updateAt        DateTime @default(now())
-  Board           Board[]
-  Task            Task[]
+  id         String   @id
+  name       String   @db.VarChar(255)
+  email      String   @unique @db.VarChar(255)
+  password   String   @db.VarChar(255)
+  bio        String   @db.Text
+  avatar_url String?
+  createdAt  DateTime
+  updateAt   DateTime @default(now())
+  Board      Board[]
+  Task       Task[]
 
   @@map("users")
 }
