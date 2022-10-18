@@ -14,10 +14,10 @@ Kanban task management api rest building with express, clean arch, tdd, prisma, 
 
 ## To-do
 
-- [ ] Criação de usuário usando o codígo de autenticação do github e dados extras
+- [x] Criação de usuário usando o codígo de autenticação do github e dados extras
   - [x] Email, Name, Bio, Password
   - [ ] Pegar dados do github do usuário e salvar
-  - [ ] Gerar token de autenticação
+  - [x] Gerar token de autenticação
   - [ ] O usuário não pode criar outro usuário com o mesmo email ou github_id
 - [ ] Login de usuário usando o github_id e senha
 - [ ] Login de usuário usando o email e senha
