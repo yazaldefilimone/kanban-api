@@ -13,9 +13,17 @@ export class UserRepository implements IUserRepository {
     return user;
   }
 
-  async getId({ id }: { id: string }): Promise<userStoreType> {
+  async getId({ id }: { id: string }): Promise<Omit<userStoreType, 'password'>> {
     const user = await prismaClient.user.findUnique({
       where: { id },
+      select: {
+        id: true,
+        email: true,
+        bio: true,
+        name: true,
+        createdAt: true,
+        updateAt: true,
+      },
     });
     return user;
   }
@@ -27,8 +35,17 @@ export class UserRepository implements IUserRepository {
     return user;
   }
 
-  async getAll(): Promise<userStoreType[]> {
-    const user = await prismaClient.user.findMany();
+  async getAll(): Promise<Omit<userStoreType, 'password'>[]> {
+    const user = await prismaClient.user.findMany({
+      select: {
+        id: true,
+        email: true,
+        bio: true,
+        name: true,
+        createdAt: true,
+        updateAt: true,
+      },
+    });
     return user;
   }
 }
