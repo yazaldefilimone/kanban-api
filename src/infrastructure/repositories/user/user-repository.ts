@@ -3,6 +3,17 @@ import { userStoreType } from '~/domain/user/dtos';
 import { prismaClient } from '~/infrastructure/repositories/prisma';
 
 export class UserRepository implements IUserRepository {
+  private repositoryProps(props: any) {
+    return {
+      id: props.id ? (props.id as boolean) : true,
+      email: props.email ? (props.email as boolean) : true,
+      bio: props.bio ? (props.bio as boolean) : true,
+      name: props.name ? (props.name as boolean) : true,
+      createdAt: props.createdAt ? (props.createdAt as boolean) : true,
+      updateAt: props.updateAt ? (props.updateAt as boolean) : true,
+      password: props.password ? (props.password as boolean) : true,
+    };
+  }
   async sign(data: userStoreType): Promise<{ id: string }> {
     const user = await prismaClient.user.create({
       data,
@@ -16,14 +27,7 @@ export class UserRepository implements IUserRepository {
   async getId({ id }: { id: string }): Promise<Omit<userStoreType, 'password'>> {
     const user = await prismaClient.user.findUnique({
       where: { id },
-      select: {
-        id: true,
-        email: true,
-        bio: true,
-        name: true,
-        createdAt: true,
-        updateAt: true,
-      },
+      select: this.repositoryProps({ password: false }),
     });
     return user;
   }
@@ -37,14 +41,7 @@ export class UserRepository implements IUserRepository {
 
   async getAll(): Promise<Omit<userStoreType, 'password'>[]> {
     const user = await prismaClient.user.findMany({
-      select: {
-        id: true,
-        email: true,
-        bio: true,
-        name: true,
-        createdAt: true,
-        updateAt: true,
-      },
+      select: this.repositoryProps({ password: false }),
     });
     return user;
   }
