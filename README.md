@@ -18,8 +18,7 @@ Kanban task management api rest building with express, clean arch, tdd, prisma, 
   - [x] Email, Name, Bio, Password
   - [x] Gerar token de autenticação
   - [x] O usuário não pode criar outro usuário com o mesmo email
-- [ ] Login de usuário usando o github_id e senha
-- [ ] Login de usuário usando o email e senha
+- [x] Login de usuário usando o email e senha
 - [ ] Criação de profile do usuário
   - [ ] O usuário pode escolher um avatar
 - [x] Busca de usuários
