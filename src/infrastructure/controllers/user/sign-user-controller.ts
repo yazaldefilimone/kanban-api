@@ -11,7 +11,7 @@ export class SignUserController implements IController {
   async execute({ request, response }: IController.Input): Promise<IController.Output> {
     try {
       const payload = request.body;
-      if (!payload) return response.status(204).json({ message: 'payload is empty' });
+      if (JSON.stringify(payload) === '{}') return response.status(204).json({ message: 'payload is empty' });
       const result = await this.signUserUseCase.perform(payload);
 
       if (result.isLeft()) {
