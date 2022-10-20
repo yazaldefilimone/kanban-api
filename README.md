@@ -25,7 +25,7 @@ Kanban task management api rest building with express, clean arch, tdd, prisma, 
 - [x] Busca de usuários
   - [x] Buscar por id
   - [x] Buscar por email
-  - [ ] Buscar por nome
+  - [x] Buscar por nome
 - [ ] Criação de tasks
   - [ ] Apenas usuários autenticados podem criar tasks
   - [ ] Lista de tasks deve ser ordenada por data de criação
