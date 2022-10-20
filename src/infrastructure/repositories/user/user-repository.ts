@@ -39,6 +39,24 @@ export class UserRepository implements IUserRepository {
     return user;
   }
 
+  async getName({ name }: { name: string }): Promise<Omit<userStoreType, 'password'>[] | null> {
+    const user = await prismaClient.user.findMany({
+      where: {
+        name: {
+          contains: name,
+          mode: 'insensitive',
+        },
+      },
+      orderBy: {
+        name: 'asc',
+      },
+      skip: 0,
+      take: 15,
+      select: this.repositoryProps({ password: false }),
+    });
+    return user;
+  }
+
   async getAll(): Promise<Omit<userStoreType, 'password'>[]> {
     const user = await prismaClient.user.findMany({
       select: this.repositoryProps({ password: false }),
