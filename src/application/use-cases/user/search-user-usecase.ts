@@ -12,7 +12,7 @@ export class SearchUserUseCase implements ISearchUserUseCase {
 
   async perform(input: ISearchUserUseCase.Input): ISearchUserUseCase.Output {
     let user: Omit<userStoreType, 'password'> | Omit<userStoreType, 'password'>[];
-    const { email, id } = input;
+    const { email, id, name } = input;
 
     if (email) {
       const result = User.isValidEmail(email);
@@ -28,6 +28,10 @@ export class SearchUserUseCase implements ISearchUserUseCase {
     if (id) {
       user = await this.userRepository.getId({ id });
       return right(user);
+    }
+    if (name) {
+      const userEmail = await this.userRepository.getName({ name });
+      return right(userEmail);
     }
 
     const users = await this.userRepository.getAll();

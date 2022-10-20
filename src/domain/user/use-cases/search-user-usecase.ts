@@ -12,6 +12,7 @@ export namespace ISearchUserUseCase {
   export type Input = {
     email?: string;
     id?: string;
+    name?: string;
   };
   export type Output = Promise<
     Either<signUserUseCaseFailed, Omit<userStoreType, 'password'> | Omit<userStoreType, 'password'>[]>
