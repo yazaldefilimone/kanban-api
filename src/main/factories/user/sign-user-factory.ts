@@ -11,5 +11,5 @@ export const signUserFactory = async function (request: Request, response: Respo
   const cryptography = new Cryptography();
   const signUserUseCase = new SignUserUseCase(userRepository, tokenGenerator, cryptography);
   const signUserController = new SignUserController(signUserUseCase);
-  return signUserController.execute({ request, response });
+  return await signUserController.execute({ request, response });
 };

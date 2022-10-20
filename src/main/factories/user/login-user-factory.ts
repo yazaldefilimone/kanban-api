@@ -11,5 +11,5 @@ export const loginUserFactory = async function (request: Request, response: Resp
   const cryptography = new Cryptography();
   const loginUserUseCase = new LoginUserUseCase(userRepository, tokenGenerator, cryptography);
   const loginUserController = new LoginUserController(loginUserUseCase);
-  return loginUserController.execute({ request, response });
+  return await loginUserController.execute({ request, response });
 };

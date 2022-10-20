@@ -7,5 +7,5 @@ export const searchUserFactory = async function (request: Request, response: Res
   const userRepository = new UserRepository();
   const searchUserUseCase = new SearchUserUseCase(userRepository);
   const searchUserController = new SearchUserController(searchUserUseCase);
-  return searchUserController.execute({ request, response });
+  return await searchUserController.execute({ request, response });
 };
