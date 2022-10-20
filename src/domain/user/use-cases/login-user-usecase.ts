@@ -1,5 +1,5 @@
 import { Either } from '~/shared/either';
-import { userLoginType } from '~/domain/user/dtos';
+import { userLoginType, userStoreType } from '~/domain/user/dtos';
 import { InvalidParamError, InternalServerError } from '~/domain/errors';
 import { AlreadyExistsError } from '~/domain/errors/already-exists-error';
 
@@ -10,5 +10,7 @@ export interface ILoginUserUseCase {
 type loginUserUseCaseFailed = InvalidParamError | InternalServerError | AlreadyExistsError;
 export namespace ILoginUserUseCase {
   export type Input = userLoginType;
-  export type Output = Promise<Either<loginUserUseCaseFailed, { id: string; token: string }>>;
+  export type Output = Promise<
+    Either<loginUserUseCaseFailed, { user: Omit<userStoreType, 'password'>; token: string }>
+  >;
 }
