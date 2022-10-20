@@ -29,9 +29,10 @@ export class SearchUserUseCase implements ISearchUserUseCase {
       user = await this.userRepository.getId({ id });
       return right(user);
     }
+
     if (name) {
-      const userEmail = await this.userRepository.getName({ name });
-      return right(userEmail);
+      const userName = await this.userRepository.getName({ name });
+      return right(userName);
     }
 
     const users = await this.userRepository.getAll();
