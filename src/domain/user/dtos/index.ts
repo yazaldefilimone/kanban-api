@@ -8,7 +8,6 @@ export type userType = {
 export type userLoginType = {
   email: string;
   password: string;
-  bio?: string;
 };
 
 export type userStoreType = {
