@@ -1,0 +1,6 @@
+{
+  "watch": ["src", "tests"],
+  "ext": "ts",
+  "ignore": [],
+  "exec": "ts-node-dev --respawn --transpile-only --clear -r dotenv/config  src/main/server.ts"
+}
