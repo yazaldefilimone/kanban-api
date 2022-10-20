@@ -19,11 +19,12 @@ export class LoginUserUseCase implements ILoginUserUseCase {
   async perform(input: ILoginUserUseCase.Input): ILoginUserUseCase.Output {
     const building = {
       email: User.isValidEmail(input.email),
-      password: User.isValidEmail(input.password),
+      password: User.isValidPassword(input.password),
     };
 
-    if (building.password.isLeft()) return left(building.password.value);
     if (building.email.isLeft()) return left(building.email.value);
+    if (building.password.isLeft()) return left(building.password.value);
+
     const user = {
       email: building.email.value,
       password: building.password.value,
