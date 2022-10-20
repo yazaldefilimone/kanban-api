@@ -11,7 +11,7 @@ export class UserRepository implements IUserRepository {
       name: props.name ? (props.name as boolean) : true,
       createdAt: props.createdAt ? (props.createdAt as boolean) : true,
       updateAt: props.updateAt ? (props.updateAt as boolean) : true,
-      password: props.password ? (props.password as boolean) : true,
+      password: props.password ? (props.password as boolean) : false,
     };
   }
   async sign(data: userStoreType): Promise<{ id: string }> {
