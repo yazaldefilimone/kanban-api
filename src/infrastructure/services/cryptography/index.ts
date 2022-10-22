@@ -2,8 +2,8 @@ import { ICryptography } from '~/application/services/cryptography';
 import bcrypt from 'bcryptjs';
 
 export class Cryptography implements ICryptography {
-  async decrypt(cipher: string, hash: string): Promise<boolean> {
-    const compare = await bcrypt.compare(cipher, hash);
+  async decrypt(input: { plain: string; hash: string }): Promise<boolean> {
+    const compare = await bcrypt.compare(input.plain, input.hash);
     return compare;
   }
 

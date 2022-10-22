@@ -35,8 +35,7 @@ export class LoginUserUseCase implements ILoginUserUseCase {
       return left(new NotFoundError({ param: 'user' }));
     }
 
-    const hash = await this.cryptography.decrypt(userExists.password, user.password);
-
+    const hash = await this.cryptography.decrypt({ plain: user.password, hash: userExists.password });
     if (!hash) {
       return left(new Error('passwords are not the same'));
     }
