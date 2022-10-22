@@ -13,7 +13,7 @@ export class TokenGenerator implements ITokenGenerator {
   }
 }
 
-export class TokenValidator {
+export class TokenValidator implements ITokenValidator {
   async validate({ token }: ITokenValidator.Input): Promise<ITokenValidator.Output<ResponseToken>> {
     let response: ITokenValidator.Output<ResponseToken>;
     verify(token, env.token.privateKey, (error, decoder) => {
