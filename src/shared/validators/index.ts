@@ -13,6 +13,9 @@ const emailSchema = Joi.object({
 const nameSchema = Joi.object({
   name: Joi.string().required().min(2).max(30),
 });
+const descriptionSchema = Joi.object({
+  description: Joi.string().required().min(0).max(200),
+});
 
 const passwordSchema = Joi.object({
   password: Joi.string().required().regex(new RegExp(passwordRegex)).min(8).max(30),
@@ -33,5 +36,11 @@ export function isValidName(name: string): boolean {
 export function isValidPassword(password: string): boolean {
   if (!password) return false;
   const result = passwordSchema.validate({ password });
+  return result.error ? false : true;
+}
+
+export function isValidDescription(description: string): boolean {
+  if (!description) return false;
+  const result = descriptionSchema.validate({ description });
   return result.error ? false : true;
 }
