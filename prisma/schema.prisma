@@ -64,7 +64,7 @@ model Board {
 
 model Status {
   id        String   @id
-  name      String   @db.VarChar(255)
+  name      String   @unique @db.VarChar(255)
   board     Board    @relation(fields: [boardId], references: [id])
   tasks     Task[]
   boardId   String
