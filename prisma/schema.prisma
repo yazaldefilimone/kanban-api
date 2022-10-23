@@ -16,25 +16,37 @@ model User {
   avatar_url String?
   createdAt  DateTime
   updateAt   DateTime @default(now())
-  Board      Board[]
-  Task       Task[]
+  boards     Board[]
+  tasks      Task[]
 
   @@map("users")
 }
 
 model Task {
-  id        String   @id
-  name      String   @db.VarChar(255)
-  createdAt DateTime
-  updateAt  DateTime @default(now())
-  status    Status   @relation(fields: [statusId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  board     Board    @relation(fields: [boardId], references: [id])
-  boardId   String
-  statusId  String
+  id          String    @id
+  name        String    @db.VarChar(255)
+  description String    @db.VarChar(500)
+  createdAt   DateTime
+  updateAt    DateTime  @default(now())
+  status      Status    @relation(fields: [statusId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
+  board       Board     @relation(fields: [boardId], references: [id])
+  userId      String
+  boardId     String
+  statusId    String
+  subTasks    SubTask[]
 
   @@map("tasks")
+}
+
+model SubTask {
+  id     String  @id @default(uuid())
+  name   String  @db.VarChar(255)
+  status Boolean @default(false)
+  task   Task    @relation(fields: [taskId], references: [id])
+  taskId String
+
+  @@map("subtasks")
 }
 
 model Board {
@@ -42,10 +54,10 @@ model Board {
   name      String   @db.VarChar(255)
   users     User     @relation(fields: [userId], references: [id])
   userId    String
-  Task      Task[]
+  tasks     Task[]
   createdAt DateTime
   updateAt  DateTime @default(now())
-  Status    Status[]
+  status    Status[]
 
   @@map("boards")
 }
@@ -54,7 +66,7 @@ model Status {
   id        String   @id
   name      String   @db.VarChar(255)
   board     Board    @relation(fields: [boardId], references: [id])
-  Task      Task[]
+  tasks     Task[]
   boardId   String
   createdAt DateTime
   updateAt  DateTime @default(now())
