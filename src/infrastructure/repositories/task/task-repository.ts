@@ -54,6 +54,11 @@ export class TaskRepository implements ITaskRepository {
 
     return metadata;
   }
+  async delete({ id }: { id: string }): Promise<void> {
+    await prismaClient.task.delete({
+      where: { id },
+    });
+  }
   async getAll(): Promise<taskStoreType[]> {
     const metadata = await prismaClient.task.findMany();
     return metadata;
