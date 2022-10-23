@@ -33,13 +33,25 @@ export class Task {
     if (taskValidate.description.isLeft()) {
       return left(taskValidate.description.value);
     }
+
     if (taskValidate.name.isLeft()) {
       return left(taskValidate.name.value);
     }
+
+    if (!task.boardId) {
+      return left(new InvalidParamError({ param: 'boardId' }));
+    }
+
+    if (!task.userId) {
+      return left(new InvalidParamError({ param: 'userId' }));
+    }
+
     const taskValid: taskType = {
       description: taskValidate.description.value,
       name: taskValidate.name.value,
       statusId: task.statusId,
+      userId: task.userId,
+      boardId: task.boardId,
     };
 
     const metadata = new Task(taskValid);
