@@ -5,5 +5,6 @@ export interface ITaskRepository {
   getId: ({ id }: { id: string }) => Promise<taskStoreType | null>;
   getStatus: ({ statusId }: { statusId: string }) => Promise<taskStoreType[] | null>;
   getName: ({ name }: { name: string }) => Promise<{ id: string } | null>;
+  delete: ({ id }: { id: string }) => Promise<void>;
   getAll: () => Promise<taskStoreType[]>;
 }
