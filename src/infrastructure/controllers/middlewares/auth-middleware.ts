@@ -11,25 +11,25 @@ export class AuthMiddleware {
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
-      return response.status(401).json({ error: 'No token provided' });
+      return response.status(401).json({ message: 'No token provided' });
     }
 
     const parts = authHeader.split(' ');
 
     if (!(parts.length === 2)) {
-      return response.status(401).json({ error: 'Token properties error' });
+      return response.status(401).json({ message: 'Token properties error' });
     }
 
     const [scheme, token] = parts;
 
     if (!/^Bearer$/.test(scheme)) {
-      return response.status(401).json({ error: 'Token invalid' });
+      return response.status(401).json({ message: 'Token invalid' });
     }
 
     const validation = await this.tokenValidator.validate({ token });
 
     if (!validation.status) {
-      return response.status(401).json({ error: 'Token invalid' });
+      return response.status(401).json({ message: 'Token invalid' });
     }
 
     request.userId = validation.data.id as string;
