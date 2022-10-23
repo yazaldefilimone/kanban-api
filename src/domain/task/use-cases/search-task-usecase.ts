@@ -1,5 +1,6 @@
 import { AlreadyExistsError, InvalidParamError } from '~/domain/errors';
 import { Either } from '~/shared/either';
+import { taskStoreType } from '../dtos';
 
 export interface ISearchTaskUseCase {
   perform: (input: ISearchTaskUseCase.Input) => ISearchTaskUseCase.Output;
@@ -11,5 +12,5 @@ export namespace ISearchTaskUseCase {
   export type Input = {
     statusId: string;
   };
-  export type Output = Promise<Either<createTaskUseCaseFailed, { id: string }>>;
+  export type Output = Promise<Either<createTaskUseCaseFailed, taskStoreType[]>>;
 }
