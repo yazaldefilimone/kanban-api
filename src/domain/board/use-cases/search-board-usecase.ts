@@ -2,15 +2,15 @@ import { AlreadyExistsError, InvalidParamError } from '~/domain/errors';
 import { Either } from '~/shared/either';
 import { boardStoreType } from '~/domain/board/dtos';
 
-export interface ISearchTaskUseCase {
-  perform: (input: ISearchTaskUseCase.Input) => ISearchTaskUseCase.Output;
+export interface ISearchBoardUseCase {
+  perform: (input: ISearchBoardUseCase.Input) => ISearchBoardUseCase.Output;
 }
 
-type createTaskUseCaseFailed = InvalidParamError | AlreadyExistsError;
+type createBoardUseCaseFailed = InvalidParamError | AlreadyExistsError;
 
-export namespace ISearchTaskUseCase {
+export namespace ISearchBoardUseCase {
   export type Input = {
     userId: string;
   };
-  export type Output = Promise<Either<createTaskUseCaseFailed, boardStoreType[]>>;
+  export type Output = Promise<Either<createBoardUseCaseFailed, boardStoreType[]>>;
 }
