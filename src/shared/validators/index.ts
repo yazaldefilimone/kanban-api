@@ -11,7 +11,7 @@ const emailSchema = Joi.object({
   email: Joi.string().email().required().regex(new RegExp(emailRegex)),
 });
 const nameSchema = Joi.object({
-  name: Joi.string().required().min(2).max(30),
+  name: Joi.string().required().min(2).max(70),
 });
 const descriptionSchema = Joi.object({
   description: Joi.string().required().min(0).max(200),
