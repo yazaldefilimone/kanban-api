@@ -31,7 +31,7 @@ Kanban task management api rest building with express, clean arch, tdd, prisma, 
   - [x] O usuário pode deletar seu task
   - [ ] O usuário pode deletar uma task se estiver no projeto
 - [ ] Criação de Boards
-  - [ ] Apenas usuários autenticados podem criar Boards
+  - [x] Apenas usuários autenticados podem criar Boards
   - [ ] Apenas usuários admins podem adicionar users nas Boards
   - [ ] Lista de Boards deve ser ordenada por data de criação
   - [ ] Fazer cache dos Boards
