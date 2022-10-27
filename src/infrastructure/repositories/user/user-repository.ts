@@ -10,6 +10,8 @@ export class UserRepository implements IUserRepository {
       bio: props.bio ? (props.bio as boolean) : true,
       name: props.name ? (props.name as boolean) : true,
       createdAt: props.createdAt ? (props.createdAt as boolean) : true,
+      tasks: props.tasks ? (props.tasks as boolean) : false,
+      boards: props.boards ? (props.boards as boolean) : false,
       updateAt: props.updateAt ? (props.updateAt as boolean) : true,
       password: props.password ? (props.password as boolean) : false,
     };
@@ -27,7 +29,7 @@ export class UserRepository implements IUserRepository {
   async getId({ id }: { id: string }): Promise<Omit<userStoreType, 'password'>> {
     const user = await prismaClient.user.findUnique({
       where: { id },
-      select: this.repositoryProps({ password: false }),
+      select: this.repositoryProps({ password: false, boards: true }),
     });
     return user;
   }
