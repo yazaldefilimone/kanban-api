@@ -64,6 +64,17 @@ export class BoardRepository implements IBoardRepository {
     return meta as any;
   }
 
+  async getAdmin({ id }: { id: string }): Promise<boardStoreType | null> {
+    const meta = await prismaClient.board.findFirst({
+      where: {
+        admin: {
+          equals: id,
+        },
+      },
+    });
+    return meta;
+  }
+
   async getUserId({ userId }: { userId: string }): Promise<boardStoreType[]> {
     const meta = await prismaClient.userBoard.findMany({
       where: { userId },
