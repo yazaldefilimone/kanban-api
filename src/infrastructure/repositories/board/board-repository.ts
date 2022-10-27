@@ -22,7 +22,7 @@ export class BoardRepository implements IBoardRepository {
       },
     });
 
-    = await prismaClient.userBoard.create({
+    await prismaClient.userBoard.create({
       data: {
         userId: data.userId,
         boardId: meta.id,
