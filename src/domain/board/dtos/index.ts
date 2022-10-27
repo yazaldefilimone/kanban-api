@@ -14,7 +14,7 @@ export type boardStoreType = {
   id: string;
   name: string;
   admin?: string[];
-  userId: string;
+  userId?: string;
   createdAt: string | Date;
   updateAt: string | Date;
 };
