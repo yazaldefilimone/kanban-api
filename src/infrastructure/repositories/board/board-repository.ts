@@ -1,7 +1,12 @@
 import { IBoardRepository } from '~/application/repositories/board';
 import { boardStoreType } from '~/domain/board/dtos';
 import { prismaClient } from '~/infrastructure/repositories/prisma';
-
+type MetaType = {
+  id: string;
+  name: string;
+  createdAt: Date;
+  updateAt: Date;
+};
 export class BoardRepository implements IBoardRepository {
   private readonly repositoryProps = (props: any) => {
     return {
@@ -12,29 +17,42 @@ export class BoardRepository implements IBoardRepository {
     };
   };
   async save(data: boardStoreType): Promise<{ id: string }> {
-    const meta = await prismaClient.board.create({
-      data: {
-        id: data.id,
-        name: data.name,
-        admin: data.admin,
-        createdAt: data.createdAt,
-        updateAt: data.updateAt,
-      },
-    });
+    let meta: MetaType | null = null;
+    try {
+      meta = await prismaClient.board.create({
+        data: {
+          id: data.id,
+          name: data.name,
+          admin: data.admin,
+          createdAt: data.createdAt,
+          updateAt: data.updateAt,
+        },
+      });
 
-    await prismaClient.userBoard.create({
-      data: {
-        userId: data.userId,
-        boardId: meta.id,
-      },
-      select: {
-        id: false,
-        userId: false,
-        boardId: false,
-      },
-    });
+      await prismaClient.userBoard.create({
+        data: {
+          userId: data.userId,
+          boardId: meta.id,
+        },
+        select: {
+          id: false,
+          userId: false,
+          boardId: false,
+          users: false,
+          boards: false,
+        },
+      });
 
-    return meta;
+      return meta;
+    } catch (error) {
+      if (meta) {
+        await prismaClient.board.delete({
+          where: { id: meta.id },
+        });
+      }
+
+      throw error;
+    }
   }
 
   async getId({ id }: { id: string }): Promise<boardStoreType> {
@@ -47,12 +65,14 @@ export class BoardRepository implements IBoardRepository {
   }
 
   async getUserId({ userId }: { userId: string }): Promise<boardStoreType[]> {
-    const meta = await prismaClient.board.findMany({
-      where: {},
-      select: this.repositoryProps({ users: false }),
+    const meta = await prismaClient.userBoard.findMany({
+      where: { userId },
+      select: {
+        boards: true,
+      },
     });
 
-    return meta as any;
+    return meta.map((data) => data.boards);
   }
   async getName({ name }: { name: string }): Promise<boardStoreType[] | null> {
     const meta = await prismaClient.board.findMany({
@@ -66,12 +86,12 @@ export class BoardRepository implements IBoardRepository {
         name: 'asc',
       },
       skip: 0,
-      take: 15,
+      take: 6,
 
-      select: this.repositoryProps({ users: false }),
+      select: this.repositoryProps({}),
     });
 
-    return meta as any;
+    return meta;
   }
   async delete({ id }: { id: string }): Promise<void> {
     await prismaClient.board.delete({
