@@ -12,6 +12,7 @@ export class CreateBoardUseCase implements ICreateBoardUseCase {
   }
 
   async perform(input: ICreateBoardUseCase.Input): ICreateBoardUseCase.Output {
+    input.admin = input.admin ? [...input.admin, input.userId] : [input.userId];
     const building = Board.build(input);
 
     if (building.isLeft()) {
@@ -22,7 +23,7 @@ export class CreateBoardUseCase implements ICreateBoardUseCase {
 
     const isExists = await this.boardRepository.getName({ name: board.name });
 
-    if (isExists) {
+    if (isExists.length >= 1) {
       return left(new AlreadyExistsError({ param: 'board name' }));
     }
 
