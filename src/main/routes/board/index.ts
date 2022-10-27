@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { createBoardFactory } from '~/main/factories/board';
+import { createBoardFactory, searchBoardFactory } from '~/main/factories/board';
 
 const boardRoutes = Router();
 
 boardRoutes.post('/create', createBoardFactory);
+boardRoutes.get('/search', searchBoardFactory);
 
 export default boardRoutes;
