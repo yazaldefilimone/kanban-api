@@ -1,6 +1,7 @@
 export type boardType = {
   name: string;
   admin?: string[];
+  userId: string;
 };
 
 export type boardSaveType = {

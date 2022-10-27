@@ -35,6 +35,7 @@ export class Board {
     const boardValid: boardType = {
       name: boardValidate.name.value,
       admin: board.admin,
+      userId: board.userId,
     };
 
     const metadata = new Board(boardValid);
