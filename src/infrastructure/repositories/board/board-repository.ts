@@ -7,17 +7,30 @@ export class BoardRepository implements IBoardRepository {
     return {
       id: props.id ? (props.id as boolean) : true,
       name: props.name ? (props.name as boolean) : true,
-      admin: props.admin ? (props.admin as boolean) : true,
-      users: props.users ? (props.users as boolean) : true,
       createdAt: props.createdAt ? (props.createdAt as boolean) : true,
       updateAt: props.updateAt ? (props.updateAt as boolean) : true,
     };
   };
   async save(data: boardStoreType): Promise<{ id: string }> {
     const meta = await prismaClient.board.create({
-      data,
+      data: {
+        id: data.id,
+        name: data.name,
+        admin: data.admin,
+        createdAt: data.createdAt,
+        updateAt: data.updateAt,
+      },
+    });
+
+    = await prismaClient.userBoard.create({
+      data: {
+        userId: data.userId,
+        boardId: meta.id,
+      },
       select: {
-        id: true,
+        id: false,
+        userId: false,
+        boardId: false,
       },
     });
 
@@ -35,13 +48,13 @@ export class BoardRepository implements IBoardRepository {
 
   async getUserId({ userId }: { userId: string }): Promise<boardStoreType[]> {
     const meta = await prismaClient.board.findMany({
-      where: { userId },
+      where: {},
       select: this.repositoryProps({ users: false }),
     });
 
     return meta as any;
   }
-  async getName({ name }: { name: string }): Promise<{ id: string }> {
+  async getName({ name }: { name: string }): Promise<boardStoreType[] | null> {
     const meta = await prismaClient.board.findMany({
       where: {
         name: {
@@ -67,6 +80,6 @@ export class BoardRepository implements IBoardRepository {
   }
   async getAll(): Promise<boardStoreType[]> {
     const meta = await prismaClient.board.findMany();
-    return meta;
+    return meta as any;
   }
 }
