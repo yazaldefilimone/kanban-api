@@ -6,5 +6,6 @@ export interface IBoardRepository {
   getUserId: ({ userId }: { userId: string }) => Promise<boardStoreType[] | null>;
   getName: ({ name }: { name: string }) => Promise<boardStoreType[] | null>;
   delete: ({ id }: { id: string }) => Promise<void>;
+  getAdmin: ({ id }: { id: string }) => Promise<boardStoreType | null>;
   getAll: () => Promise<boardStoreType[]>;
 }
