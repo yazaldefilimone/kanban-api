@@ -1,6 +1,6 @@
-import { IUserRepository } from '~/application/repositories/user';
+import { IUserRepository } from '~/application/repositories';
 import { userStoreType } from '~/domain/user/dtos';
-import { prismaClient } from '~/infrastructure/repositories/prisma';
+import { PrismaSingleton } from '~/infrastructure/repositories/prisma/settings';
 
 export class UserRepository implements IUserRepository {
   private repositoryProps(props: any) {
@@ -17,7 +17,7 @@ export class UserRepository implements IUserRepository {
     };
   }
   async sign(data: userStoreType): Promise<{ id: string }> {
-    const user = await prismaClient.user.create({
+    const user = await PrismaSingleton.instance.user.create({
       data,
       select: {
         id: true,
@@ -27,7 +27,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async getId({ id }: { id: string }): Promise<Omit<userStoreType, 'password'>> {
-    const user = await prismaClient.user.findUnique({
+    const user = await PrismaSingleton.instance.user.findUnique({
       where: { id },
       select: this.repositoryProps({ password: false, boards: true }),
     });
@@ -35,14 +35,14 @@ export class UserRepository implements IUserRepository {
   }
 
   async getEmail({ email }: { email: string }): Promise<userStoreType> {
-    const user = await prismaClient.user.findUnique({
+    const user = await PrismaSingleton.instance.user.findUnique({
       where: { email },
     });
     return user;
   }
 
   async getName({ name }: { name: string }): Promise<Omit<userStoreType, 'password'>[] | null> {
-    const user = await prismaClient.user.findMany({
+    const user = await PrismaSingleton.instance.user.findMany({
       where: {
         name: {
           contains: name,
@@ -60,7 +60,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async getAll(): Promise<Omit<userStoreType, 'password'>[]> {
-    const user = await prismaClient.user.findMany({
+    const user = await PrismaSingleton.instance.user.findMany({
       select: this.repositoryProps({ password: false }),
     });
     return user;

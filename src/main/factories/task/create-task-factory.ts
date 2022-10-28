@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateTaskUseCase } from '~/application/use-cases/task';
 import { CreateTaskController } from '~/infrastructure/controllers/task';
-import { TaskRepository } from '~/infrastructure/repositories/task/task-repository';
+import { TaskRepository } from '~/infrastructure/repositories/prisma/repo';
 
 export const createTaskFactory = async (request: Request, response: Response) => {
   const taskRepository = new TaskRepository();

@@ -1,6 +1,6 @@
-import { ITaskRepository } from '~/application/repositories/task';
+import { ITaskRepository } from '~/application/repositories';
 import { taskSaveType, taskStoreType } from '~/domain/task/dtos';
-import { prismaClient } from '~/infrastructure/repositories/prisma';
+import { PrismaSingleton } from '~/infrastructure/repositories/prisma/settings';
 
 export class TaskRepository implements ITaskRepository {
   private readonly repositoryProps = (props?: any) => {
@@ -17,7 +17,7 @@ export class TaskRepository implements ITaskRepository {
     };
   };
   async save(data: taskStoreType): Promise<{ id: string }> {
-    const metadata = await prismaClient.task.create({
+    const metadata = await PrismaSingleton.instance.task.create({
       data,
       select: {
         id: true,
@@ -27,14 +27,14 @@ export class TaskRepository implements ITaskRepository {
     return metadata;
   }
   async getId({ id }: { id: string }): Promise<taskStoreType> {
-    const metadata = await prismaClient.task.findUnique({
+    const metadata = await PrismaSingleton.instance.task.findUnique({
       where: { id },
     });
 
     return metadata;
   }
   async getStatus({ statusId }: { statusId: string }): Promise<taskStoreType[]> {
-    const metadata = await prismaClient.task.findMany({
+    const metadata = await PrismaSingleton.instance.task.findMany({
       where: { status: { id: statusId } },
       select: this.repositoryProps(),
     });
@@ -43,7 +43,7 @@ export class TaskRepository implements ITaskRepository {
   }
 
   async getName({ name }: { name: string }): Promise<{ id: string }> {
-    const metadata = await prismaClient.task.findFirst({
+    const metadata = await PrismaSingleton.instance.task.findFirst({
       where: {
         name,
       },
@@ -55,12 +55,12 @@ export class TaskRepository implements ITaskRepository {
     return metadata;
   }
   async delete({ id }: { id: string }): Promise<void> {
-    await prismaClient.task.delete({
+    await PrismaSingleton.instance.task.delete({
       where: { id },
     });
   }
   async getAll(): Promise<taskStoreType[]> {
-    const metadata = await prismaClient.task.findMany();
+    const metadata = await PrismaSingleton.instance.task.findMany();
     return metadata;
   }
 }

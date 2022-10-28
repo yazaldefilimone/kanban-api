@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateBoardUseCase } from '~/application/use-cases/board';
 import { CreateBoardController } from '~/infrastructure/controllers/board';
-import { BoardRepository } from '~/infrastructure/repositories/board/board-repository';
+import { BoardRepository } from '~/infrastructure/repositories/prisma/repo';
 
 export const createBoardFactory = async (request: Request, response: Response) => {
   const boardRepository = new BoardRepository();

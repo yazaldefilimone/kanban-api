@@ -1,6 +1,6 @@
-import { IBoardRepository } from '~/application/repositories/board';
+import { IBoardRepository } from '~/application/repositories';
 import { boardStoreType } from '~/domain/board/dtos';
-import { prismaClient } from '~/infrastructure/repositories/prisma';
+import { PrismaSingleton } from '~/infrastructure/repositories/prisma/settings';
 type MetaType = {
   id: string;
   name: string;
@@ -19,7 +19,7 @@ export class BoardRepository implements IBoardRepository {
   async save(data: boardStoreType): Promise<{ id: string }> {
     let meta: MetaType | null = null;
     try {
-      meta = await prismaClient.board.create({
+      meta = await PrismaSingleton.instance.board.create({
         data: {
           id: data.id,
           name: data.name,
@@ -29,7 +29,7 @@ export class BoardRepository implements IBoardRepository {
         },
       });
 
-      await prismaClient.userBoard.create({
+      await PrismaSingleton.instance.userBoard.create({
         data: {
           userId: data.userId,
           boardId: meta.id,
@@ -46,7 +46,7 @@ export class BoardRepository implements IBoardRepository {
       return meta;
     } catch (error) {
       if (meta) {
-        await prismaClient.board.delete({
+        await PrismaSingleton.instance.board.delete({
           where: { id: meta.id },
         });
       }
@@ -56,7 +56,7 @@ export class BoardRepository implements IBoardRepository {
   }
 
   async getId({ id }: { id: string }): Promise<boardStoreType> {
-    const meta = await prismaClient.board.findUnique({
+    const meta = await PrismaSingleton.instance.board.findUnique({
       where: { id },
       select: this.repositoryProps({ users: false }),
     });
@@ -64,7 +64,7 @@ export class BoardRepository implements IBoardRepository {
     return meta as any;
   }
   async createAdmin({ admin, boardId }: { admin: string; boardId: string }): Promise<void> {
-    await prismaClient.board.update({
+    const meta = await PrismaSingleton.instance.board.update({
       where: { id: boardId },
       data: {
         admin: {
@@ -75,7 +75,7 @@ export class BoardRepository implements IBoardRepository {
   }
 
   async getAdmin({ id }: { id: string }): Promise<boardStoreType | null> {
-    const meta = await prismaClient.board.findFirst({
+    const meta = await PrismaSingleton.instance.board.findFirst({
       where: {
         admin: {
           equals: id,
@@ -86,7 +86,7 @@ export class BoardRepository implements IBoardRepository {
   }
 
   async getUserId({ userId }: { userId: string }): Promise<boardStoreType[]> {
-    const meta = await prismaClient.userBoard.findMany({
+    const meta = await PrismaSingleton.instance.userBoard.findMany({
       where: { userId },
       select: {
         boards: true,
@@ -96,7 +96,7 @@ export class BoardRepository implements IBoardRepository {
     return meta.map((data) => data.boards);
   }
   async getName({ name }: { name: string }): Promise<boardStoreType[] | null> {
-    const meta = await prismaClient.board.findMany({
+    const meta = await PrismaSingleton.instance.board.findMany({
       where: {
         name: {
           contains: name,
@@ -115,12 +115,12 @@ export class BoardRepository implements IBoardRepository {
     return meta;
   }
   async delete({ id }: { id: string }): Promise<void> {
-    await prismaClient.board.delete({
+    await PrismaSingleton.instance.board.delete({
       where: { id },
     });
   }
   async getAll(): Promise<boardStoreType[]> {
-    const meta = await prismaClient.board.findMany();
+    const meta = await PrismaSingleton.instance.board.findMany();
     return meta as any;
   }
 }

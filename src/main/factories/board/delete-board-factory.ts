@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { DeleteBoardUseCase } from '~/application/use-cases/board';
 import { DeleteBoardController } from '~/infrastructure/controllers/board';
-import { BoardRepository } from '~/infrastructure/repositories/board/board-repository';
+import { BoardRepository } from '~/infrastructure/repositories/prisma/repo';
 
 export const deleteBoardFactory = async (request: Request, response: Response) => {
   const boardRepository = new BoardRepository();
