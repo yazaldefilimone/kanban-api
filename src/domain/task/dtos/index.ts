@@ -38,6 +38,6 @@ export type taskStoreType = {
 export type subTaskStoreType = {
   id: string;
   name: string;
-  status: string;
+  status: boolean;
   taskId: string;
 };
