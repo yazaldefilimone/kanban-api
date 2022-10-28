@@ -10,5 +10,5 @@ type actionSubTaskUseCaseFailed = InvalidParamError | AlreadyExistsError;
 
 export namespace IActionSubTaskUseCase {
   export type Input = subTaskStoreType;
-  export type Output = Promise<Either<actionSubTaskUseCaseFailed, subTaskStoreType>>;
+  export type Output = Promise<Either<actionSubTaskUseCaseFailed, { id: string }>>;
 }
