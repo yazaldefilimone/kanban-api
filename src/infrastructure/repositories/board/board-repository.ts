@@ -63,6 +63,16 @@ export class BoardRepository implements IBoardRepository {
 
     return meta as any;
   }
+  async createAdmin({ admin, boardId }: { admin: string; boardId: string }): Promise<void> {
+    await prismaClient.board.update({
+      where: { id: boardId },
+      data: {
+        admin: {
+          push: admin,
+        },
+      },
+    });
+  }
 
   async getAdmin({ id }: { id: string }): Promise<boardStoreType | null> {
     const meta = await prismaClient.board.findFirst({
