@@ -34,3 +34,10 @@ export type taskStoreType = {
   createdAt: string | Date;
   updateAt: string | Date;
 };
+
+export type subTaskStoreType = {
+  id: string;
+  name: string;
+  status: string;
+  taskId: string;
+};
