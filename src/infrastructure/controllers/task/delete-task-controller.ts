@@ -7,9 +7,9 @@ export class DeleteTaskController implements IController {
     this.deleteTaskUseCase = deleteTaskUseCase;
   }
   async execute({ request, response }: IController.Input): Promise<IController.Output> {
-    const payload = request.params;
+    const payload = request.query;
     if (JSON.stringify(payload) === '{}' || !payload) {
-      return response.status(204).json({ message: 'params is empty' });
+      return response.status(204).json({ message: 'query is empty' });
     }
 
     const taskOrError = await this.deleteTaskUseCase.perform(payload as any);
