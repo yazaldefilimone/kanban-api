@@ -3,7 +3,7 @@ import { InvalidParamError } from '~/domain/errors';
 import { ISearchSubTaskUseCase } from '~/domain/task/use-cases';
 import { left, right } from '~/shared/either';
 
-export class SearchTaskUseCase implements ISearchSubTaskUseCase {
+export class SearchSubTaskUseCase implements ISearchSubTaskUseCase {
   private readonly subTaskRepository: ISubTaskRepository;
   constructor(subTaskRepository: ISubTaskRepository) {
     this.subTaskRepository = subTaskRepository;
