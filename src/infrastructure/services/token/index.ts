@@ -5,6 +5,7 @@ type ResponseToken = {
   status: boolean;
   data: string | JwtPayload;
 };
+
 export class TokenGenerator implements ITokenGenerator {
   async generate({ key, expirationInMs }: ITokenGenerator.Input): Promise<ITokenGenerator.Output> {
     const expiration = expirationInMs ? expirationInMs : '1d';
@@ -18,15 +19,15 @@ export class TokenValidator implements ITokenValidator {
     let response: ITokenValidator.Output<ResponseToken>;
     verify(token, env.token.privateKey, (error, decoder) => {
       if (error) {
-        response = {
+        return (response = {
           status: false,
           data: error.message as any,
-        };
+        });
       }
-      response = {
+      return (response = {
         status: true,
         data: decoder as any,
-      };
+      });
     });
 
     return response;
