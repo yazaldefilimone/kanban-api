@@ -5,7 +5,7 @@ export class PrismaSingleton {
   private constructor() {}
 
   static get instance() {
-    if (PrismaSingleton.client) {
+    if (PrismaSingleton.client === null) {
       PrismaSingleton.client = new PrismaClient();
       return PrismaSingleton.client;
     }
