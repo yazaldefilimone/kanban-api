@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { SearchUserUseCase } from '~/application/use-cases/user';
 import { SearchUserController } from '~/infrastructure/controllers/user';
-import { UserRepository } from '~/infrastructure/repositories/user';
+import { UserRepository } from '~/infrastructure/repositories/prisma/repo';
 
 export const searchUserFactory = async function (request: Request, response: Response) {
   const userRepository = new UserRepository();

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { LoginUserUseCase } from '~/application/use-cases/user';
 import { LoginUserController } from '~/infrastructure/controllers/user';
-import { UserRepository } from '~/infrastructure/repositories/user';
+import { UserRepository } from '~/infrastructure/repositories/prisma/repo';
 import { Cryptography } from '~/infrastructure/services/cryptography';
 import { TokenGenerator } from '~/infrastructure/services/token';
 

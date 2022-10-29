@@ -1,4 +1,4 @@
-import { IUserRepository } from '~/application/repositories/user';
+import { IUserRepository } from '~/application/repositories';
 import { ICryptography } from '~/application/services/cryptography';
 import { ITokenGenerator } from '~/application/services/token';
 import { NotFoundError } from '~/domain/errors';

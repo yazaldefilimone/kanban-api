@@ -1,4 +1,4 @@
-import { ITaskRepository } from '~/application/repositories/task';
+import { ITaskRepository } from '~/application/repositories';
 import { AlreadyExistsError } from '~/domain/errors';
 import { taskStoreType } from '~/domain/task/dtos';
 import { Task } from '~/domain/task/entity';

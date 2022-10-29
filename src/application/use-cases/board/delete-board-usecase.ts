@@ -1,4 +1,4 @@
-import { IBoardRepository } from '~/application/repositories/board';
+import { IBoardRepository } from '~/application/repositories';
 import { InvalidParamError } from '~/domain/errors';
 import { IDeleteBoardUseCase } from '~/domain/board/use-cases';
 import { left, right } from '~/shared/either';

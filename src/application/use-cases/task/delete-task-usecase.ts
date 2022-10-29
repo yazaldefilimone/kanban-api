@@ -1,4 +1,4 @@
-import { ITaskRepository } from '~/application/repositories/task';
+import { ITaskRepository } from '~/application/repositories';
 import { InvalidParamError } from '~/domain/errors';
 import { IDeleteTaskUseCase } from '~/domain/task/use-cases';
 import { left, right } from '~/shared/either';

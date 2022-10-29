@@ -1,4 +1,4 @@
-import { IUserRepository } from '~/application/repositories/user';
+import { IUserRepository } from '~/application/repositories';
 import { userStoreType } from '~/domain/user/dtos';
 import { User } from '~/domain/user/entity';
 import { ISearchUserUseCase } from '~/domain/user/use-cases';

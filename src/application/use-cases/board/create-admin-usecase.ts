@@ -1,4 +1,4 @@
-import { IBoardRepository } from '~/application/repositories/board';
+import { IBoardRepository } from '~/application/repositories';
 import { ICreateAdminUseCase } from '~/domain/board/use-cases';
 import { AlreadyExistsError, InvalidParamError, UnauthorizedError } from '~/domain/errors';
 import { left, right } from '~/shared/either';
