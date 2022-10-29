@@ -4,7 +4,7 @@ import { createTaskFactory, deleteTaskFactory, searchTaskFactory } from '~/main/
 const taskRoutes = Router();
 
 taskRoutes.post('/create', createTaskFactory);
-taskRoutes.post('/delete', deleteTaskFactory);
+taskRoutes.delete('/delete', deleteTaskFactory);
 taskRoutes.get('/search', searchTaskFactory);
 
 export default taskRoutes;
