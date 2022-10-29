@@ -27,7 +27,7 @@
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js)\" --write",
     "postinstall": "husky install",
     "start": "node -r dotenv/config dist/main/server.js",
-    "dev": "nodemon",
+    "dev": "tsnd --respawn --watch false --transpile-only --clear -r dotenv/config  src/main/server.ts",
     "clean": "rimraf dist",
     "build": "npm run clean && tsc -p tsconfig-build.json",
     "prepare": "husky install",
