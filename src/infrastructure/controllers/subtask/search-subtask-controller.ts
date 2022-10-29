@@ -1,7 +1,7 @@
 import { ISearchSubTaskUseCase } from '~/domain/task/use-cases';
 import { IController } from '~/infrastructure/controllers/protocols';
 
-export class SearchTaskController implements IController {
+export class SearchSubTaskController implements IController {
   private readonly searchSubTaskUseCase: ISearchSubTaskUseCase;
   constructor(searchSubTaskUseCase: ISearchSubTaskUseCase) {
     this.searchSubTaskUseCase = searchSubTaskUseCase;

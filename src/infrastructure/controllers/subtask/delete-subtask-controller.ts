@@ -1,7 +1,7 @@
 import { IDeleteSubTaskUseCase } from '~/domain/task/use-cases';
 import { IController } from '~/infrastructure/controllers/protocols';
 
-export class DeleteTaskController implements IController {
+export class DeleteSubTaskController implements IController {
   private readonly deleteSubTaskUseCase: IDeleteSubTaskUseCase;
   constructor(deleteSubTaskUseCase: IDeleteSubTaskUseCase) {
     this.deleteSubTaskUseCase = deleteSubTaskUseCase;
