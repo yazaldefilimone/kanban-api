@@ -20,7 +20,7 @@ export class LoginUserController implements IController {
       if (result.isLeft()) {
         return response.status(400).json({ message: result.value.message });
       }
-      return response.status(201).json(result.value);
+      return response.status(200).json(result.value);
     } catch (error) {
       const serverError = new InternalServerError();
       return response.status(500).json({ message: serverError.message });
